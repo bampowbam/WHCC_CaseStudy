@@ -10,3 +10,7 @@ dotnet build
 dotnet run
 ```
 
+## Potential Performance Improvements
+
+1) Have MinCountNeeded method be recursive function.
+2) 
