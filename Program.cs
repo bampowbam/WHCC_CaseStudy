@@ -16,36 +16,36 @@ namespace WHCC_CaseStudy
         {
             Console.WriteLine("Enter your amount of money(USD)");
             NumberFormatInfo current = NumberFormatInfo.CurrentInfo;
-            int maxCurrencyLevelForTest = Decimal.ToInt32(Convert.ToDecimal(Console.ReadLine(), current) * 100);
+            int currency = Decimal.ToInt32(Convert.ToDecimal(Console.ReadLine(), current) * 100);
             int minPenniesNeeded = 0;
             int minNickelsNeeded = 0;
             int minDimesNeeded = 0;
             int minQuartersNeeded = 0;
             int minDollarsNeeded = 0;
 
-            if (maxCurrencyLevelForTest >= 100)
+            if (currency >= 100)
             {
-                minDollarsNeeded = maxCurrencyLevelForTest / 100;
-                maxCurrencyLevelForTest = maxCurrencyLevelForTest - minDollarsNeeded * 100;
+                minDollarsNeeded = currency / 100;
+                currency = currency - minDollarsNeeded * 100;
             }
-            if (maxCurrencyLevelForTest == penny)
+            if (currency == penny)
             {
                 minPenniesNeeded = 1;
             }
-            else if (maxCurrencyLevelForTest < nickel)
+            else if (currency < nickel)
             {
-                minPenniesNeeded = MinCountNeeded(penny, maxCurrencyLevelForTest);
+                minPenniesNeeded = MinCountNeeded(penny, currency);
             }
-            else if (maxCurrencyLevelForTest < dime)
+            else if (currency < dime)
             {
                 minPenniesNeeded = MinCountNeeded(penny, nickel - 1);
-                minNickelsNeeded = MinCountNeeded(nickel, maxCurrencyLevelForTest);
+                minNickelsNeeded = MinCountNeeded(nickel, currency);
             }
-            else if (maxCurrencyLevelForTest < quarter)
+            else if (currency < quarter)
             {
                 minPenniesNeeded = MinCountNeeded(penny, nickel - 1);
                 minNickelsNeeded = MinCountNeeded(nickel, dime - 1);
-                minDimesNeeded = MinCountNeeded(dime, maxCurrencyLevelForTest);
+                minDimesNeeded = MinCountNeeded(dime, currency);
             }
             else
             {
@@ -54,9 +54,9 @@ namespace WHCC_CaseStudy
                 minDimesNeeded = MinCountNeeded(dime, quarter - 1);
 
                 var maxPossilbleValueWithoutQuarters = (minPenniesNeeded * penny + minNickelsNeeded * nickel + minDimesNeeded * dime);
-                if (maxCurrencyLevelForTest > maxPossilbleValueWithoutQuarters)
+                if (currency > maxPossilbleValueWithoutQuarters)
                 {
-                    minQuartersNeeded = (((maxCurrencyLevelForTest - maxPossilbleValueWithoutQuarters) - 1) / quarter) + 1;
+                    minQuartersNeeded = (((currency - maxPossilbleValueWithoutQuarters) - 1) / quarter) + 1;
                 }
             }
 
